@@ -12,21 +12,30 @@ database.once('connected', () => console.log('Database Connected'));
 const app = express();
 app.use(express.json());
 
+// Home Route
 app.get('/', function (req, res) {
-    res.send("This is Home Page of Pet REscue Department....!!!");
+    res.send("This is Home Page of Pet Rescue Department....!!!");
 });
 
-// To serve uploaded images
+// Serve Uploaded Images
 app.use('/Uploads', express.static('Uploads'));
 
 // User Controller
-const petscontroller = require('./controller/userController');
-app.use('/pets', petscontroller);
+const userController = require('./controller/userController');
+app.use('/users', userController);
 
 // Volunteer Controller
 const volunteerController = require('./controller/volunteerController');
 app.use('/volunteers', volunteerController);
 
+// Pet Controller
+const petController = require('./controller/petController');
+app.use('/pets', petController);
+
+// ✅ Admin Controller
+const adminController = require('./controller/adminController');
+app.use('/admins', adminController);
+
 app.listen(4000, () => {
-    console.log(`Server Started at ${4000}`);
+    console.log(`Server Started at 4000`);
 });
