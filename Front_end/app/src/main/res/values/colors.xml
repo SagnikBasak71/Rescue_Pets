@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Basic Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Primary Brand Color -->
+    <color name="primary_color">#4CAF50</color> <!-- Picked final green -->
+
+    <!-- Optional Alternate Green (rename if needed) -->
+    <!-- <color name="dark_green">#2E7D32</color> -->
+
+    <!-- Background Colors -->
+    <color name="background_light">#FFFFFF</color> <!-- Final background -->
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+
+    <!-- Accent / Error Color -->
+    <color name="red">#D32F2F</color>
 </resources>

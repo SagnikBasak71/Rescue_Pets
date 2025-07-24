@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:fillViewport="true"
+    android:background="@color/background_light"
+    tools:context=".Volunteer.VolunteerRegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingVertical="32dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volunteer Registration"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_color"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Name -->
+        <EditText
+            android:id="@+id/input_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:backgroundTint="@color/primary_color"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Email -->
+        <EditText
+            android:id="@+id/input_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:backgroundTint="@color/primary_color"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Phone Number -->
+        <EditText
+            android:id="@+id/input_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:backgroundTint="@color/primary_color"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Skills -->
+        <EditText
+            android:id="@+id/input_skills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your Skills (e.g., First Aid, Animal Care)"
+            android:inputType="text"
+            android:padding="12dp"
+            android:backgroundTint="@color/primary_color"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Availability -->
+        <EditText
+            android:id="@+id/input_availability"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Availability (e.g., Weekends, Evenings)"
+            android:inputType="text"
+            android:padding="12dp"
+            android:backgroundTint="@color/primary_color"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Register Button -->
+        <Button
+            android:id="@+id/btn_register_volunteer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/primary_color"
+            android:textColor="@android:color/white"
+            android:paddingVertical="14dp" />
+    </LinearLayout>
+</ScrollView>
