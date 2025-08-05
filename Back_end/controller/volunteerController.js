@@ -3,17 +3,17 @@ const router = express.Router();
 const Volunteer = require('../model/Volunteer');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const multer = require('../middleware/multer');
+const upload = require('../middleware/multer'); // multer config
+require('dotenv').config();
 
-// ✅ 1. Register
-router.post('/register', multer.single('image'), async (req, res) => {
+// ✅ 1. Register (image optional)
+router.post('/register', upload.single('image'), async (req, res) => {
     try {
-        const { email, name, password, contact, address } = req.body;
-        const image = req.file?.filename;
-        
+        const { email, name, password, contact, location } = req.body;
+        const image = req.file ? req.file.filename : null;
 
-        if (!email || !name || !password || !contact || !address || !image) {
-            return res.status(400).json({ message: "All fields are required." });
+        if (!email || !name || !password || !contact || !location) {
+            return res.status(400).json({ message: "All fields except image are required." });
         }
 
         const existingVolunteer = await Volunteer.findOne({ email });
@@ -28,8 +28,8 @@ router.post('/register', multer.single('image'), async (req, res) => {
             name,
             password: hashedPassword,
             contact,
-            address,
-            image
+            address:location,
+         // store filename
         });
 
         await newVolunteer.save();
@@ -40,6 +40,7 @@ router.post('/register', multer.single('image'), async (req, res) => {
     }
 });
 
+// ✅ 2. Login
 // ✅ 2. Login
 router.post('/login', async (req, res) => {
     try {
@@ -55,7 +56,11 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ message: "Invalid email or password." });
         }
 
-        const token = jwt.sign({ volunteerId: volunteer._id }, process.env.SECRET_KEY, { expiresIn: '1d' });
+        const token = jwt.sign(
+            { volunteerId: volunteer._id },
+            process.env.SECRET_KEY,
+            { expiresIn: '1d' }
+        );
 
         res.status(200).json({
             message: "Login successful.",
@@ -65,8 +70,8 @@ router.post('/login', async (req, res) => {
                 email: volunteer.email,
                 name: volunteer.name,
                 contact: volunteer.contact,
-                address: volunteer.address,
-                image: volunteer.image
+                location: volunteer.address, // <-- Fixed here
+                image: volunteer.image,
             }
         });
 
@@ -75,13 +80,17 @@ router.post('/login', async (req, res) => {
     }
 });
 
+
 // ✅ 3. Update
-router.patch('/update/:id', async (req, res) => {
+router.patch('/update/:id', upload.single('image'), async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
-        const options = { new: true };
+        if (req.file) {
+            updatedData.image = req.file.filename;
+        }
 
+        const options = { new: true };
         const result = await Volunteer.findByIdAndUpdate(id, updatedData, options);
         res.status(200).json(result);
     } catch (error) {
@@ -100,39 +109,30 @@ router.delete('/delete/:id', async (req, res) => {
     }
 });
 
-// ✅ 5. Get volunteer by id
+// ✅ 5. Get volunteer by ID
 router.get('/getVolunteerById/:id', async (req, res) => {
     try {
         const volunteer = await Volunteer.findById(req.params.id);
-
         if (!volunteer) {
             return res.status(404).json({ message: "Volunteer not found" });
         }
-
-        const volunteerWithImageUrl = {
-            ...volunteer._doc,
-            image: `${req.protocol}://${req.get('host')}/uploads/${volunteer.image}`,
-        };
-
-        res.status(200).json(volunteerWithImageUrl);
+        res.status(200).json(volunteer);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-
-
-// ✅ 6. Get All Volunteers
+// ✅ 6. Get All Volunteers (with image URLs if needed)
 router.get('/getAll', async (req, res) => {
     try {
         const volunteers = await Volunteer.find();
 
-        const withImages = volunteers.map(v => ({
+        const volunteersWithImageUrl = volunteers.map(v => ({
             ...v._doc,
-            image: `${req.protocol}://${req.get('host')}/uploads/${v.image}`,
+            image: v.image ? `${req.protocol}://${req.get('host')}/Uploads/${v.image}` : null,
         }));
 
-        res.status(200).json(withImages);
+        res.status(200).json(volunteersWithImageUrl);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

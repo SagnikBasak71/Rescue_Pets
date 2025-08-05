@@ -1,31 +1,27 @@
 const mongoose = require('mongoose');
 
 const volunteerSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
     name: {
-        type: String,
-        required: true
+        required: true,
+        type: String
+    },
+    email: {
+        required: true,
+        type: String
     },
     password: {
-        type: String,
-        required: true
+        required: true,
+        type: String
     },
     contact: {
-        type: String,
-        required: true
+        required: true,
+        type: String
     },
     address: {
-        type: String,
-        required: true
-    },
-    image: {
-        type: String,
-        required: true
+        required: true,
+        type: String
     }
 });
 
-module.exports = mongoose.model('Volunteer', volunteerSchema);
+// Avoid OverwriteModelError and use a separate model name
+module.exports = mongoose.models.Volunteer || mongoose.model('Volunteer', volunteerSchema);

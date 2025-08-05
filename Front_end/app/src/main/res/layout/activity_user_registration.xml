@@ -3,118 +3,133 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/normal"
     android:fillViewport="true"
-    android:background="@color/background_light">
+    android:id="@+id/main"
+    android:padding="24dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center_horizontal">
-
-        <!-- Logo -->
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/rescue"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="@string/app_logo"
-            android:scaleType="centerCrop" />
+        android:gravity="center"
+        android:paddingTop="36dp"
+        android:paddingBottom="36dp">
 
         <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create Account"
-            android:textSize="24sp"
+            android:text="User Registration"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/primary_color"
             android:layout_marginBottom="24dp" />
 
-        <!-- Full Name -->
-        <com.google.android.material.textfield.TextInputLayout
+        <!-- Name -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_marginBottom="16dp">
-
-            <com.google.android.material.textfield.TextInputEditText
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+            <EditText
+                android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:padding="12dp"
+                android:background="@android:color/transparent" />
+        </androidx.cardview.widget.CardView>
 
         <!-- Email -->
-        <com.google.android.material.textfield.TextInputLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email Address"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="16dp"
-            app:endIconMode="clear_text">
-
-            <com.google.android.material.textfield.TextInputEditText
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+            <EditText
+                android:id="@+id/user_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:padding="12dp"
+                android:background="@android:color/transparent" />
+        </androidx.cardview.widget.CardView>
 
         <!-- Password -->
-        <com.google.android.material.textfield.TextInputLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="16dp"
-            app:endIconMode="password_toggle">
-
-            <com.google.android.material.textfield.TextInputEditText
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+            <EditText
+                android:id="@+id/user_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:background="@android:color/transparent" />
+        </androidx.cardview.widget.CardView>
 
-        <!-- Confirm Password -->
-        <com.google.android.material.textfield.TextInputLayout
+        <!-- Contact -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_marginBottom="24dp"
-            app:endIconMode="password_toggle">
-
-            <com.google.android.material.textfield.TextInputEditText
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+            <EditText
+                android:id="@+id/user_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Contact Number"
+                android:inputType="phone"
+                android:padding="12dp"
+                android:background="@android:color/transparent" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Location -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+            <EditText
+                android:id="@+id/user_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Location"
+                android:inputType="textPostalAddress"
+                android:padding="12dp"
+                android:background="@android:color/transparent" />
+        </androidx.cardview.widget.CardView>
 
         <!-- Register Button -->
         <Button
-            android:id="@+id/register_button"
+            android:id="@+id/user_register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register"
-            android:textAllCaps="false"
-            android:backgroundTint="@color/primary_color"
             android:textColor="@android:color/white"
-            android:padding="12dp" />
+            android:backgroundTint="@color/primary_color"
+            android:layout_marginBottom="16dp" />
 
-        <!-- Back to Login -->
+        <!-- Already have account -->
         <TextView
-            android:id="@+id/back_to_login"
+            android:id="@+id/already_have_an_acc_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Already have an account? Login"
-            android:textColor="@color/primary_color"
-            android:padding="16dp"
-            android:layout_marginTop="16dp"
+            android:textColor="@color/red"
             android:textStyle="bold"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true" />
-
+            android:layout_marginTop="8dp" />
     </LinearLayout>
 </ScrollView>

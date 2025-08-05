@@ -5,17 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/normal"
     android:fillViewport="true"
-    android:background="@color/background_light"
     tools:context=".Volunteer.Login_Volunteer">
 
 
-<LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center_horizontal">
+        android:padding="24dp">
 
         <!-- Volunteer Logo -->
         <ImageView
@@ -23,27 +23,27 @@
             android:layout_height="120dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/volunteer1"
             android:contentDescription="Volunteer Logo"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/volunteer1" />
 
         <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:text="Volunteer Login"
-            android:textSize="26sp"
-            android:textStyle="bold"
             android:textColor="@color/primary_color"
-            android:layout_marginBottom="24dp" />
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
         <!-- Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            android:layout_marginBottom="24dp">
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,12 +53,12 @@
 
                 <!-- Email -->
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:hint="Email"
-                    app:endIconMode="clear_text"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginBottom="16dp">
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/volunteer_email"
@@ -69,12 +69,12 @@
 
                 <!-- Password -->
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:hint="Password"
-                    app:endIconMode="password_toggle"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginBottom="16dp">
+                    app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/volunteer_password"
@@ -88,24 +88,24 @@
                     android:id="@+id/volunteer_login_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Login"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
+                    android:layout_marginBottom="8dp"
                     android:backgroundTint="@color/primary_color"
                     android:padding="12dp"
-                    android:layout_marginBottom="8dp" />
+                    android:text="Login"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
                 <!-- Forgot Password -->
                 <TextView
                     android:id="@+id/volunteer_forgot_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Forgot Password?"
-                    android:textColor="@color/primary_color"
-                    android:textSize="14sp"
                     android:layout_gravity="end"
                     android:background="?android:attr/selectableItemBackground"
-                    android:padding="8dp" />
+                    android:padding="8dp"
+                    android:text="Forgot Password?"
+                    android:textColor="@color/primary_color"
+                    android:textSize="14sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -113,8 +113,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -127,13 +127,13 @@
                 android:id="@+id/volunteer_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="8dp"
                 android:text="Register"
                 android:textColor="@color/primary_color"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginStart="4dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:padding="8dp" />
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>

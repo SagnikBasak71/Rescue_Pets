@@ -3,75 +3,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/normal"
     android:fillViewport="true"
     android:padding="16dp"
-    android:background="@color/background_light"
     tools:context=".Admin.Admin_Login">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_marginHorizontal="8dp"
         android:gravity="center"
-        android:paddingVertical="32dp"
-        android:layout_marginHorizontal="8dp">
+        android:orientation="vertical"
+        android:paddingVertical="32dp">
 
         <!-- Welcome -->
         <TextView
             android:id="@+id/welcome_admin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
             android:text="Welcome, Admin!"
-            android:textSize="24sp"
-            android:textStyle="bold"
             android:textColor="@color/primary_color"
-            android:layout_marginBottom="32dp" />
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <!-- Button: View All Reports -->
         <Button
             android:id="@+id/btn_view_reports"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📄 View All Reports"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="@color/primary_color"
-            android:textColor="@android:color/white"
-            android:textAllCaps="false"
             android:paddingVertical="14dp"
-            android:layout_marginBottom="20dp" />
+            android:text="📄 View All Reports"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
 
         <!-- Button: Manage Volunteers -->
         <Button
             android:id="@+id/btn_manage_volunteers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="👥 Manage Volunteers"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="@color/primary_color"
-            android:textColor="@android:color/white"
-            android:textAllCaps="false"
             android:paddingVertical="14dp"
-            android:layout_marginBottom="20dp" />
+            android:text="👥 Manage Volunteers"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
 
         <!-- Button: Add Announcement -->
         <Button
             android:id="@+id/btn_announcement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📢 Add Announcement"
+            android:layout_marginBottom="32dp"
             android:backgroundTint="@color/primary_color"
-            android:textColor="@android:color/white"
-            android:textAllCaps="false"
             android:paddingVertical="14dp"
-            android:layout_marginBottom="32dp" />
+            android:text="📢 Add Announcement"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
 
         <!-- Logout Button -->
         <Button
             android:id="@+id/btn_logout_admin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🚪 Logout"
             android:backgroundTint="@color/red"
-            android:textColor="@android:color/white"
+            android:paddingVertical="14dp"
+            android:text="🚪 Logout"
             android:textAllCaps="false"
-            android:paddingVertical="14dp" />
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </ScrollView>

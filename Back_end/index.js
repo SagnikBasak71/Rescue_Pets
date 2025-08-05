@@ -10,7 +10,10 @@ database.on('error', (error) => console.log(error));
 database.once('connected', () => console.log('Database Connected'));
 
 const app = express();
-app.use(express.json());
+
+// ✅ Fix: Add Both Middlewares
+app.use(express.json());                              // Parse JSON
+app.use(express.urlencoded({ extended: true }));      // Parse x-www-form-urlencoded
 
 // Home Route
 app.get('/', function (req, res) {
@@ -32,7 +35,7 @@ app.use('/volunteers', volunteerController);
 const petController = require('./controller/petController');
 app.use('/pets', petController);
 
-// ✅ Admin Controller
+// Admin Controller
 const adminController = require('./controller/adminController');
 app.use('/admins', adminController);
 
