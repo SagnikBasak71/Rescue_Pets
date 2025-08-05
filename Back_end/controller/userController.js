@@ -3,182 +3,123 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../model/User');
+const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
+
+// ✅ Import multer and set up .none() for form-data parsing
 const multer = require('../middleware/multer');
-const bcrypt = require("bcrypt")
-const jwt = require('jsonwebtoken')
+const upload = multer.none();
 
 // Home route
 router.get('/', (req, res) => {
-    res.send("This is Home Page of Pet REscue Department....!!!");
+    res.send("Welcome to the Pet Rescue User Portal!");
 });
 
-// Register pet
-router.post('/registeruser', multer.single('image'), async (req, res) => {
-    
+// ✅ Register User (Supports form-data without file)
+router.post('/register', upload, async (req, res) => {
     try {
-        const { userid, name, password,contact, petType } = req.body;
+        const { name, email, password, contact, location } = req.body;
 
-        if (!req.file) {
-            return res.status(400).json({ error: 'Image is required' });
+        if (!name || !email || !password || !contact || !location) {
+            return res.status(400).json({ error: 'All fields are required.' });
         }
 
-        const hash = await bcrypt.hash(password, 10);
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(409).json({ error: 'User already exists with this email.' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = new User({
-            userid,
             name,
-            password: hash,
+            email,
+            password: hashedPassword,
             contact,
-            image: req.file.filename,
-            petType,
+            location
         });
 
         const savedUser = await newUser.save();
-        res.status(201).json(savedUser);
+        res.status(201).json({ message: "User registered successfully", user: savedUser });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-// Login route
-router.post('/login', async function (req, res) {
-     try {
-        const { userid, password} = req.body;
-        
-        if (!userid|| !password ) {
-            return res.status(400).json({
-                message: "Something is missing",
-                success: false
-            });
-        };
-        let user = await User.findOne({ userid });
-        console.log(user)
+// ✅ Login route
+router.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ message: "Missing email or password", success: false });
+        }
+
+        const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({
-                message: "Incorrect userid or password.",
-                success: false,
-            })
+            return res.status(400).json({ message: "Invalid credentials", success: false });
         }
-        const isPasswordMatch = await bcrypt.compare(password, user.password);
-        if (!isPasswordMatch) {
-            return res.status(400).json({
-                message: "Incorrect email or password.",
-                success: false,
-            })
-        };
-       
-        const tokenData = {
-            userId: user._id
-        }
-        const token = await jwt.sign(tokenData, process.env.SECRET_KEY, { expiresIn: '1d' });
 
-        user = {
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: "Invalid credentials", success: false });
+        }
+
+        const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1d' });
+
+        const userData = {
             _id: user._id,
-            name:user.name,
-            userid: user.userid,
+            name: user.name,
+            email: user.email,
             contact: user.contact,
-        }
+            location: user.location
+        };
 
-        return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpsOnly: true, sameSite: 'strict' }).json({
-            message: `Welcome back ${user.name}`,
-            user,
-            success: true
-        })
-    } catch (error) {
-        console.log(error);
-    }
-});
+        res.status(200)
+            .cookie("token", token, { maxAge: 86400000, httpOnly: true, sameSite: 'strict' })
+            .json({ message: `Welcome back ${user.name}`, user: userData, success: true });
 
-// Get Pet by id (using id)
-router.get('/getPetsById/:id', async (req, res) => {
-    try {
-        const users = await User.find();
-
-        const usersWithImageUrl = users.map(u => ({
-            ...u._doc,
-            image: `${req.protocol}://${req.get('host')}/uploads/${u.image}`,
-        }));
-
-        res.json(usersWithImageUrl);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-// Get Volunteers (for rescue the pets)
-router.get('/getVolunteers', async (req, res) => {
+// ✅ Get all registered users
+router.get('/getUsers', async (req, res) => {
     try {
         const users = await User.find();
-
-        const usersWithImageUrl = users.map(u => ({
-            ...u._doc,
-            image: `${req.protocol}://${req.get('host')}/uploads/${u.image}`,
-        }));
-
-        res.json(usersWithImageUrl);
+        res.json(users);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-// Update info
+// ✅ Update user
 router.patch('/update/:id', async (req, res) => {
     try {
-        const id = req.params.id;
-        const updatedData = req.body;
-        const options = { new: true };
-
-        const result = await User.findByIdAndUpdate(
-            id, updatedData, options
-        )
-
-        res.send(result)
-    }
-    catch (error) {
-        res.status(400).json({ message: error.message })
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(updatedUser);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
     }
 });
 
-
-
-// Delete info
+// ✅ Delete user
 router.delete('/delete/:id', async (req, res) => {
     try {
-        const id = req.params.id;
-        const data = await User.findByIdAndDelete(id)
-        res.send(`Document with ${data.name} has been deleted..`)
-    }
-    catch (error) {
-        res.status(400).json({ message: error.message })
+        const data = await User.findByIdAndDelete(req.params.id);
+        res.send(`User ${data?.name || 'data'} deleted successfully.`);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
     }
 });
-//search_by_name/id
+
+// ✅ Filter users by name (GET)
 router.get('/filterByName/:name', async (req, res) => {
     try {
-        const users = await User.find({name:{$regex:req.params.name,$options:"i"}});
-
-        const usersWithImageUrl = users.map(u => ({
-            ...u._doc,
-            image: `${req.protocol}://${req.get('host')}/uploads/${u.image}`,
-        }));
-
-        res.json(usersWithImageUrl);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-// Get All Pets (for getting all pets)
-router.get('/getPets', async (req, res) => {
-    try {
-        const users = await User.find();
-
-        const usersWithImageUrl = users.map(u => ({
-            ...u._doc,
-            image: `${req.protocol}://${req.get('host')}/uploads/${u.image}`,
-        }));
-
-        res.json(usersWithImageUrl);
+        const name = req.params.name;
+        const users = await User.find({ name: { $regex: name, $options: 'i' } });
+        res.status(200).json(users);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

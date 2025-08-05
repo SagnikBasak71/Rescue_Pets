@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
-    userid: {
+const userSchema = new mongoose.Schema({
+    name: {
         required: true,
         type: String
     },
-    name: {
+    email: {
         required: true,
         type: String
     },
@@ -13,18 +13,11 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: String
     },
-    petType:{
-        required:true,
-        type: String
-    },
     contact: {
         required: true,
         type: String
-    },
-    image:{
-      required: true,
-      type: String
     }
-})
+});
 
-module.exports = mongoose.model('User', dataSchema)
+// Avoid OverwriteModelError
+module.exports = mongoose.models.User || mongoose.model('User', userSchema);

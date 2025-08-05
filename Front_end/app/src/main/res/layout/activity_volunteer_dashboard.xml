@@ -2,15 +2,15 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:background="@drawable/normal"
     android:fillViewport="true"
-    android:background="@color/background_light">
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:paddingTop="32dp"
         android:paddingBottom="32dp">
 
@@ -19,111 +19,111 @@
             android:id="@+id/welcome_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="Hi, Volunteer! 🐾"
-            android:textSize="22sp"
-            android:textStyle="bold"
             android:textColor="@color/primary_color"
-            android:layout_marginBottom="8dp" />
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/motivation_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:text="You've helped 12 animals this month!"
             android:textColor="@color/text_secondary"
-            android:textSize="14sp"
-            android:layout_marginBottom="24dp" />
+            android:textSize="14sp" />
 
         <!-- 2. Quick Actions -->
         <Button
             android:id="@+id/view_reports_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📍 View Nearby Reports"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="@color/primary_color"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="12dp" />
+            android:text="📍 View Nearby Reports"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/mark_available_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="✅ Mark Yourself Available"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="@color/primary_color"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="12dp" />
+            android:text="✅ Mark Yourself Available"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/add_update_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📝 Add Update to Assigned Case"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="@color/primary_color"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="12dp" />
+            android:text="📝 Add Update to Assigned Case"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/view_schedule_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📆 View My Schedule"
+            android:layout_marginBottom="24dp"
             android:backgroundTint="@color/primary_color"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="24dp" />
+            android:text="📆 View My Schedule"
+            android:textColor="@android:color/white" />
 
         <!-- 3. Assigned Tasks Header -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="Assigned Tasks"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:textColor="@color/text_primary"
-            android:layout_marginBottom="8dp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <!-- Placeholder Task Info -->
         <TextView
             android:id="@+id/no_tasks_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:text="No tasks assigned right now."
-            android:textColor="@color/text_secondary"
-            android:layout_marginBottom="24dp" />
+            android:textColor="@color/text_secondary" />
 
         <!-- 4. Availability Status -->
         <TextView
             android:id="@+id/availability_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="Status: Not Available"
-            android:textStyle="italic"
             android:textColor="@color/text_secondary"
-            android:layout_marginBottom="16dp" />
+            android:textStyle="italic" />
 
         <!-- 5. Volunteer Stats -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="Your Stats"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:textColor="@color/text_primary"
-            android:layout_marginBottom="8dp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:text="• Total Rescues: 23\n• Rating: 4.8⭐\n• Area: South Kolkata"
-            android:textColor="@color/text_secondary"
-            android:layout_marginBottom="24dp" />
+            android:textColor="@color/text_secondary" />
 
         <!-- 6. Pet Care Tip -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="🐕 Tip: Carry extra water for strays in hot weather!"
-            android:textColor="@color/text_secondary"
-            android:layout_marginBottom="16dp" />
+            android:textColor="@color/text_secondary" />
 
     </LinearLayout>
 </ScrollView>

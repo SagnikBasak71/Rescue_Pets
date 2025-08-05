@@ -2,20 +2,20 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/normal"
     android:fillViewport="true"
-    android:id="@+id/main"
-    android:background="@color/background_light"
     tools:context=".User.User_Login_Activity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="24dp"
-        android:paddingBottom="48dp"
-        android:gravity="center">
+        android:paddingBottom="48dp">
 
         <!-- Logo/Header Section -->
         <ImageView
@@ -24,28 +24,28 @@
             android:layout_height="120dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/rescue"
             android:contentDescription="@string/app_logo"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/rescue" />
 
         <TextView
             android:id="@+id/app_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="@string/app_name"
-            android:textSize="28sp"
-            android:textStyle="bold"
             android:textColor="@color/primary_color"
-            android:layout_marginBottom="8dp" />
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/welcome_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
             android:text="@string/welcome_back"
-            android:textSize="16sp"
             android:textColor="@color/text_secondary"
-            android:layout_marginBottom="32dp" />
+            android:textSize="16sp" />
 
         <!-- Login Form -->
         <com.google.android.material.card.MaterialCardView
@@ -65,12 +65,12 @@
                 <!-- Email Input -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/email_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:hint="@string/email_hint"
-                    app:endIconMode="clear_text"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email_edit_text"
@@ -83,12 +83,12 @@
                 <!-- Password Input -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/password_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:hint="@string/password_hint"
-                    app:endIconMode="password_toggle"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/password_edit_text"
@@ -103,34 +103,34 @@
                     android:id="@+id/remember_me_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/remember_me"
-                    android:textColor="@color/text_primary"
-                    android:layout_marginBottom="8dp" />
+                    android:textColor="@color/text_primary" />
 
                 <!-- Login Button -->
                 <Button
                     android:id="@+id/login_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:backgroundTint="@color/primary_color"
+                    android:padding="12dp"
                     android:text="@string/login"
                     android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:backgroundTint="@color/primary_color"
-                    android:layout_marginBottom="12dp"
-                    android:padding="12dp" />
+                    android:textColor="@android:color/white" />
 
                 <!-- Forgot Password -->
                 <TextView
                     android:id="@+id/forgot_password_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/forgot_password"
-                    android:textColor="@color/primary_color"
-                    android:textSize="14sp"
                     android:layout_gravity="end"
                     android:layout_marginBottom="24dp"
                     android:background="?android:attr/selectableItemBackground"
-                    android:padding="8dp" />
+                    android:padding="8dp"
+                    android:text="@string/forgot_password"
+                    android:textColor="@color/primary_color"
+                    android:textSize="14sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -138,9 +138,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
