@@ -1,6 +1,7 @@
 package com.example.rescue_pets.User;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,7 +33,7 @@ public class User_Registration_Activity extends AppCompatActivity {
     TextView already_have_an_acc_user;
     ProgressDialog progressDialog;
 
-    String URL = "http://10.100.144.57:4000/users/register"; // Replace with your actual API endpoint
+    String URL = "http://192.168.0.101:4000/users/register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,15 @@ public class User_Registration_Activity extends AppCompatActivity {
                 registerUser(un, ue, up, uc, ul);
             }
         });
+
+        already_have_an_acc_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(User_Registration_Activity.this, User_Login_Activity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void registerUser(String name, String email, String password, String contact, String location) {
@@ -78,7 +88,7 @@ public class User_Registration_Activity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(getApplicationContext(), "User Registered Successfully", Toast.LENGTH_SHORT).show();
-                        // Optionally clear form or redirect
+                        // Optionally go to login directly
                     }
                 },
                 new Response.ErrorListener() {

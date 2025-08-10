@@ -138,4 +138,9 @@ router.get('/getAll', async (req, res) => {
     }
 });
 
+router.post('/rescue', upload.single('image'), async (req, res) => {
+    console.log(req.file); // For debugging
+    res.json({ message: "Image uploaded successfully", imagePath: req.file.path });
+});
+
 module.exports = router;

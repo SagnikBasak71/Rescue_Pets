@@ -1,135 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/normal"
     android:fillViewport="true"
-    android:id="@+id/main"
-    android:padding="24dp"
-    >
+    tools:context=".Volunteer.Volunteer_Registration"
+    android:padding="24dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:paddingTop="36dp"
         android:paddingBottom="36dp">
+
+        <!-- Logo -->
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/volunteer1"
+            android:contentDescription="Volunteer Logo"
+            android:scaleType="centerCrop" />
 
         <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Volunteer Registration"
-            android:textSize="22sp"
-            android:textStyle="bold"
+            android:textSize="24sp"
             android:textColor="@color/primary_color"
-            android:layout_marginBottom="24dp" />
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp" />
 
-        <!-- Name -->
-        <androidx.cardview.widget.CardView
+        <!-- Card View Container -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-            <EditText
-                android:id="@+id/vol_name"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
-                android:inputType="textPersonName"
-                android:padding="12dp"
-                android:background="@android:color/transparent" />
-        </androidx.cardview.widget.CardView>
+                android:orientation="vertical"
+                android:padding="24dp">
 
-        <!-- Email -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-            <EditText
-                android:id="@+id/vol_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:padding="12dp"
-                android:background="@android:color/transparent" />
-        </androidx.cardview.widget.CardView>
+                <!-- Full Name -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:hint="Full Name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/primary_color">
 
-        <!-- Password -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-            <EditText
-                android:id="@+id/vol_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:background="@android:color/transparent" />
-        </androidx.cardview.widget.CardView>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/vol_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Contact -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-            <EditText
-                android:id="@+id/vol_contact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Contact Number"
-                android:inputType="phone"
-                android:padding="12dp"
-                android:background="@android:color/transparent" />
-        </androidx.cardview.widget.CardView>
+                <!-- Email -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:hint="Email"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:endIconMode="clear_text"
+                    app:boxStrokeColor="@color/primary_color">
 
-        <!-- Address -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-            <EditText
-                android:id="@+id/vol_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Address"
-                android:inputType="textPostalAddress"
-                android:padding="12dp"
-                android:background="@android:color/transparent" />
-        </androidx.cardview.widget.CardView>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/vol_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Register Button -->
-        <Button
-            android:id="@+id/vol_register_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/primary_color"
-            android:layout_marginBottom="16dp" />
+                <!-- Password -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:hint="Password"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:endIconMode="password_toggle"
+                    app:boxStrokeColor="@color/primary_color">
 
-        <!-- Already have account -->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/vol_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Contact -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:hint="Contact Number"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/primary_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/vol_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Address -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:hint="Address"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/primary_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/vol_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Register Button -->
+                <Button
+                    android:id="@+id/vol_register_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/primary_color"
+                    android:padding="12dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Already have an account -->
         <TextView
             android:id="@+id/already_have_an_acc_vol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Already have an account? Login"
-            android:textColor="@color/red"
+            android:textColor="@color/primary_color"
             android:textStyle="bold"
-            android:layout_marginTop="8dp" />
+            android:textSize="14sp"
+            android:padding="8dp" />
     </LinearLayout>
 </ScrollView>

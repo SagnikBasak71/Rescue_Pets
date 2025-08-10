@@ -93,6 +93,17 @@
                     android:text="Login"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white" />
+                <!-- Forgot Password -->
+                <TextView
+                    android:id="@+id/admin_forget_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="12dp"
+                    android:text="Forgot Password?"
+                    android:textColor="@color/primary_color"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

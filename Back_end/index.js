@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const mongoString = process.env.DATABASE_URL;
+
+// Connect to MongoDB
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 
@@ -11,34 +13,31 @@ database.once('connected', () => console.log('Database Connected'));
 
 const app = express();
 
-// ✅ Fix: Add Both Middlewares
+// ✅ Middlewares for parsing requests
 app.use(express.json());                              // Parse JSON
 app.use(express.urlencoded({ extended: true }));      // Parse x-www-form-urlencoded
 
 // Home Route
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.send("This is Home Page of Pet Rescue Department....!!!");
 });
 
 // Serve Uploaded Images
 app.use('/Uploads', express.static('Uploads'));
 
-// User Controller
+// ✅ Controllers
 const userController = require('./controller/userController');
-app.use('/users', userController);
-
-// Volunteer Controller
 const volunteerController = require('./controller/volunteerController');
-app.use('/volunteers', volunteerController);
-
-// Pet Controller
 const petController = require('./controller/petController');
-app.use('/pets', petController);
-
-// Admin Controller
 const adminController = require('./controller/adminController');
-app.use('/admins', adminController);
 
+// ✅ Use /api prefix for all routes
+app.use('/api/users', userController);
+app.use('/api/volunteers', volunteerController);
+app.use('/api/pets', petController);
+app.use('/api/admins', adminController);
+
+// Start Server
 app.listen(4000, () => {
-    console.log(`Server Started at 4000`);
+    console.log(`🚀 Server Started at http://localhost:4000`);
 });
