@@ -12,7 +12,6 @@ const petSchema = new mongoose.Schema({
     upload_date_time: {
         type: Date,
         required: true,
-        default: Date.now
     },
     address: {
         type: String,
@@ -20,7 +19,7 @@ const petSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        required: true
+        default: 'pending'
     },
     image: {
         type: String,

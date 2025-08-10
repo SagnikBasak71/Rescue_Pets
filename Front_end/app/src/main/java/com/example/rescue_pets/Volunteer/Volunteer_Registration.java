@@ -1,5 +1,7 @@
 package com.example.rescue_pets.Volunteer;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,8 +31,9 @@ public class Volunteer_Registration extends AppCompatActivity {
     EditText vol_name, vol_email, vol_password, vol_contact, vol_address;
     Button vol_register_button;
     TextView already_have_an_acc_vol;
+    ProgressDialog progressDialog;
 
-    String URL = "http://10.100.144.57:4000/volunteers/register"; // Replace with your backend API
+    String URL = "http://10.57.255.57:4000/volunteers/register"; // Replace with your backend API
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,8 @@ public class Volunteer_Registration extends AppCompatActivity {
         vol_register_button = findViewById(R.id.vol_register_button);
         already_have_an_acc_vol = findViewById(R.id.already_have_an_acc_vol);
 
+        progressDialog = new ProgressDialog(this);
+
         vol_register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,20 +73,38 @@ public class Volunteer_Registration extends AppCompatActivity {
                 registerVolunteer(vn, ve, vp, vc, va);
             }
         });
+
+        already_have_an_acc_vol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 🔁 Move to Volunteer Login Activity
+                Intent intent = new Intent(Volunteer_Registration.this, Login_Volunteer.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void registerVolunteer(String name, String email, String password, String contact, String address) {
+        progressDialog.setMessage("Registering...");
+        progressDialog.show();
+
         StringRequest request = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
-                        // Optionally finish activity or clear form
+                        // After success, move to login
+                        Intent intent = new Intent(Volunteer_Registration.this, Login_Volunteer.class);
+                        startActivity(intent);
+                        finish();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Registration Failed: " + error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {

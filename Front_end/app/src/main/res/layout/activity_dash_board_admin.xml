@@ -29,7 +29,7 @@
 
         <!-- Button: View All Reports -->
         <Button
-            android:id="@+id/btn_view_reports"
+            android:id="@+id/admin_dashboard_reports_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -41,7 +41,7 @@
 
         <!-- Button: Manage Volunteers -->
         <Button
-            android:id="@+id/btn_manage_volunteers"
+            android:id="@+id/admin_manage_reports_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -53,7 +53,7 @@
 
         <!-- Button: Add Announcement -->
         <Button
-            android:id="@+id/btn_announcement"
+            android:id="@+id/admin_dashboard_announcement_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
